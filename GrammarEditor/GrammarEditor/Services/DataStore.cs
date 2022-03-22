@@ -18,17 +18,13 @@ namespace GrammarEditor.Services
 
         public DataStore()
         {
+            items = new List<Item>();
             string sData = GrammarSettings.GrammarDataLocalStore;
             var array = JArray.Parse(sData);
 
             foreach (var item in array)
             {
-                //new Item { Id = Guid.NewGuid().ToString(), MSG_EN = "First item", MSG_RU="This is an item description." },
-                //new Item { Id = Guid.NewGuid().ToString(), MSG_EN = "Second item", MSG_RU="This is an item description." },
-                //new Item { Id = Guid.NewGuid().ToString(), MSG_EN = "Third item", MSG_RU="This is an item description." },
-                //new Item { Id = Guid.NewGuid().ToString(), MSG_EN = "Fourth item", MSG_RU="This is an item description." },
-                //new Item { Id = Guid.NewGuid().ToString(), MSG_EN = "Fifth item", MSG_RU="This is an item description." },
-                //new Item { Id = Guid.NewGuid().ToString(), MSG_EN = "Sixth item", MSG_RU="This is an item description." }
+                items.Add(new Item { Id = Guid.NewGuid().ToString(), MSG_EN = item["EN"].ToString(), MSG_RU = item["RU"].ToString() });
             };
 
         }

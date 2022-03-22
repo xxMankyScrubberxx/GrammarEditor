@@ -1,4 +1,5 @@
 ﻿using GrammarEditor.Models;
+using GrammarEditor.Services;
 using GrammarEditor.Views;
 using System;
 using System.Collections.ObjectModel;
@@ -34,6 +35,8 @@ namespace GrammarEditor.ViewModels
 
             try
             {
+
+                string sData = GrammarSettings.GrammarDataLocalStore;
                 Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)

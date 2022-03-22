@@ -23,6 +23,8 @@ namespace GrammarEditor.ViewModels
         const string dataGrammarLocal = "GrammarEditor.grammar.json";
         public string DataGrammarLocal { get => dataGrammarLocal; }
         string dataGrammarLocation = "https://wearebadmofos.com/grammar.txt";
+        private string grammarDataLocalStore;
+
         public string DataGrammarLocation { get => dataGrammarLocation; }
 
         public string DataGrammarJSON { get => GrammarSettings.GrammarDataLocalStore; }
@@ -40,7 +42,7 @@ namespace GrammarEditor.ViewModels
                     //save data locally 
                     GrammarSettings.GrammarDataLocalStore = sJSONData;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     //unable to retrieve file from internet;use local
                     try

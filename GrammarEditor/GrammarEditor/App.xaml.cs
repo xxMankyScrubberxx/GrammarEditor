@@ -1,8 +1,5 @@
 ﻿using GrammarEditor.Services;
-using GrammarEditor.Views;
-using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace GrammarEditor
 {

@@ -39,19 +39,8 @@ namespace GrammarEditor.Services
 
 
         static readonly IFolder folder = FileSystem.Current.LocalStorage;
-        public static async Task<string> GrammarDataLocalStore
-        {
-            get
-            {
-                string s = ReadAllTextAsync(GrammarDataFile).ToString();
-                return s;
-            }
-
-            set
-            {
-                WriteTextAllAsync(GrammarDataFile, value.ToString());
-            }
-        }
+        private static string grammarDataLocalStore;
+        public static string GrammarDataLocalStore = "[{}]";
 
         public static async Task<bool> IsFileExistAsync(this string fileName, IFolder rootFolder = null)
         {
