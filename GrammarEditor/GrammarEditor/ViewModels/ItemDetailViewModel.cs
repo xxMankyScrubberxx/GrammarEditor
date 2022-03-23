@@ -49,7 +49,7 @@ namespace GrammarEditor.ViewModels
             }
             set
             {
-                msg_id = value;
+                SetProperty(ref msg_id, value);
                 LoadItemId(value);
             }
         }
