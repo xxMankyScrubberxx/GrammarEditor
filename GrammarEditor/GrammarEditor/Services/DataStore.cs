@@ -1,5 +1,6 @@
 ﻿using GrammarEditor.Models;
 using GrammarEditor.ViewModels;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -46,10 +47,17 @@ namespace GrammarEditor.Services
 
         }
 
-        
+
         public async Task<bool> AddItemAsync(GrammarItem item)
         {
             items.Add(item);
+
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> ExportToJSONAsync()
+        {
+            string json = JsonConvert.SerializeObject(items);
 
             return await Task.FromResult(true);
         }

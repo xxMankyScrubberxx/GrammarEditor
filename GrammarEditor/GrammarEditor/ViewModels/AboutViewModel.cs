@@ -29,6 +29,7 @@ namespace GrammarEditor.ViewModels
 
         public string DataGrammarJSON { get => GrammarSettings.GrammarDataLocalStore; }
 
+        
         public async void GetGrammarDataPoolAsync()
         {
             string sJSONData = string.Empty;

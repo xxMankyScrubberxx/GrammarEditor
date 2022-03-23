@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace GrammarEditor.ViewModels
@@ -17,6 +19,29 @@ namespace GrammarEditor.ViewModels
         private string notes = string.Empty;
         private string bibliography = string.Empty;
         private string categories = string.Empty;
+
+        public ItemDetailViewModel()
+        {
+            ExportToJSON = new Command(() => ExportToJSONAsync());
+        }
+        public ICommand ExportToJSON { get; }
+        public async void ExportToJSONAsync()
+        {
+            var item = await DataStore.GetItemAsync(MSG_ID);
+            item.MSG_EN = MSG_EN;
+            item.MSG_RU = MSG_RU;
+            item.MSG = MSG;
+            item.NOTES = NOTES;
+            item.CATEGORIES = CATEGORIES;
+            item.MSG_CAT = MSG_CAT;
+            item.RU_STATUS = RU_STATUS;
+            item.EN_STATUS = EN_STATUS;
+            item.BIBLIOGRAPHY = BIBLIOGRAPHY;
+
+            //string json = JsonConvert.SerializeObject(item);
+            string json = JsonConvert.SerializeObject(DataStore);
+        }
+
 
         public string MSG { get=> msg; set => SetProperty(ref msg, value); }
         public string MSG_CAT { get => msg_cat; set => SetProperty(ref msg_cat, value); }
@@ -61,6 +86,7 @@ namespace GrammarEditor.ViewModels
 
             return sFormatted;
         }
+
 
         public async void LoadItemId(string itemId)
         {

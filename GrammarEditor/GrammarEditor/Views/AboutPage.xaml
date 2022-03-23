@@ -43,6 +43,7 @@
                         Command="{Binding GetGrammarData}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
+
             </StackLayout>
         </ScrollView>
     </Grid>
