@@ -49,9 +49,9 @@ namespace GrammarEditor.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
+            GrammarItem newItem = new GrammarItem()
             {
-                Id = Guid.NewGuid().ToString(),
+                MSG_ID = Guid.NewGuid().ToString(),
                 MSG_EN = Text,
                 MSG_RU = Description
             };

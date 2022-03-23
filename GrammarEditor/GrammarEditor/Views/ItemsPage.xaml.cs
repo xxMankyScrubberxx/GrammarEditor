@@ -12,15 +12,15 @@ using Xamarin.Forms.Xaml;
 
 namespace GrammarEditor.Views
 {
-    public partial class ItemsPage : ContentPage
+    public partial class GrammarItemsPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        GrammarItemsViewModel _viewModel;
 
-        public ItemsPage()
+        public GrammarItemsPage()
         {
             InitializeComponent();
 
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new GrammarItemsViewModel();
         }
 
         protected override void OnAppearing()

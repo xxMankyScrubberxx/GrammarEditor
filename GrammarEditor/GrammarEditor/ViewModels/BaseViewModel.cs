@@ -10,7 +10,7 @@ namespace GrammarEditor.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<GrammarItem> DataStore => DependencyService.Get<IDataStore<GrammarItem>>();
 
         bool isBusy = false;
         public bool IsBusy

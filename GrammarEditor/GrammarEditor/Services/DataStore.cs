@@ -3,6 +3,7 @@ using GrammarEditor.ViewModels;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -12,34 +13,49 @@ using Xamarin.Forms;
 
 namespace GrammarEditor.Services
 {
-    public class DataStore : IDataStore<Item>
+    public class DataStore : IDataStore<GrammarItem>
     {
-        readonly List<Item> items;
+        //readonly List<GrammarItem> items;
+        public ObservableCollection<GrammarItem> items { get; private set; }
 
         public DataStore()
         {
-            items = new List<Item>();
+            //items = new List<GrammarItem>();
+            items = new ObservableCollection<GrammarItem>();
             string sData = GrammarSettings.GrammarDataLocalStore;
             var array = JArray.Parse(sData);
 
             foreach (var item in array)
             {
-                items.Add(new Item { Id = Guid.NewGuid().ToString(), MSG_EN = item["EN"].ToString(), MSG_RU = item["RU"].ToString() });
+                items.Add(
+                    new GrammarItem 
+                    { 
+                        MSG_ID = item["MSG_ID"].ToString(), 
+                        MSG_EN = item["EN"].ToString(), 
+                        MSG_RU = item["RU"].ToString(), 
+                        MSG_CAT = item["CATEGORY"].ToString(),
+                        BIBLIOGRAPHY = item["BIBLIOGRAPHY"].ToString(),
+                        EN_STATUS = item["EN_STATUS"].ToString(),
+                        RU_STATUS = item["RU_STATUS"].ToString(),
+                        NOTES = item["NOTES"].ToString(),
+                        CATEGORIES = item["CATEGORIES"].ToString()
+                    }
+                );
             };
 
         }
 
         
-        public async Task<bool> AddItemAsync(Item item)
+        public async Task<bool> AddItemAsync(GrammarItem item)
         {
             items.Add(item);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public async Task<bool> UpdateItemAsync(GrammarItem item)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+            var oldItem = items.Where((GrammarItem arg) => arg.MSG_ID == item.MSG_ID).FirstOrDefault();
             items.Remove(oldItem);
             items.Add(item);
 
@@ -48,18 +64,18 @@ namespace GrammarEditor.Services
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+            var oldItem = items.Where((GrammarItem arg) => arg.MSG_ID == id).FirstOrDefault();
             items.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<GrammarItem> GetItemAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(items.FirstOrDefault(s => s.MSG_ID == id));
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<GrammarItem>> GetGrammarItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
         }

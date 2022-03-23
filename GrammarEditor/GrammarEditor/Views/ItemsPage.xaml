@@ -1,38 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GrammarEditor.Views.ItemsPage"
+             x:Class="GrammarEditor.Views.GrammarItemsPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:GrammarEditor.ViewModels"  
-             xmlns:model="clr-namespace:GrammarEditor.Models"  
+             xmlns:model="clr-namespace:GrammarEditor.Models" x:DataType="local:GrammarItemsViewModel"
              x:Name="BrowseItemsPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+        <ToolbarItem Text="Add" Command="{Binding AddGrammarItemCommand}" />
     </ContentPage.ToolbarItems>
     <!--
       x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
-    <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+    <RefreshView x:DataType="local:GrammarItemsViewModel" Command="{Binding LoadGrammarItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
+                ItemsSource="{Binding GrammarItems}"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Item">
-                        <Label Text="{Binding MSG}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <Label Text="{Binding MSG_EN}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
+                    <StackLayout Padding="10" x:DataType="model:GrammarItem">
+                        <Grid Margin="15,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="30" />
+                            </Grid.RowDefinitions>
+                            <Label Text="{Binding MSG_ID}" Grid.Column="0" Grid.Row="0"
+                                                MaxLines="1"
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                FontSize="16" />
+                            <Label Text="{Binding MSG_CAT}" Grid.Column="1" Grid.Row="0"
+                                                LineBreakMode="NoWrap" 
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                MaxLines="1"
+                                                FontSize="16" />
+                            <Label Text="{Binding MSG_EN}" Grid.Column="1" Grid.Row="1"
+                                                BackgroundColor="{Binding EN_STATUS}"
+                                                LineBreakMode="NoWrap" 
+                                                Style="{DynamicResource ListItemTextStyle}" 
+                                                MaxLines="1"
+                                                FontSize="16" />
+                            <Label Text="{Binding MSG_RU}" Grid.Column="1" Grid.Row="2"
+                                                LineBreakMode="NoWrap"
+                                                BackgroundColor="{Binding RU_STATUS}"
+                                                MaxLines="1"
+                                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                                FontSize="13" />
+                        </Grid>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:GrammarItemsViewModel}}, Path=GrammarItemTapped}"		
                                 CommandParameter="{Binding .}">
                             </TapGestureRecognizer>
                         </StackLayout.GestureRecognizers>

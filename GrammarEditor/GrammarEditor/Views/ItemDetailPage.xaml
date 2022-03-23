@@ -5,10 +5,10 @@
              Title="{Binding Title}">
 
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Text}" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Description}" FontSize="Small"/>
+        <Label Text="English:" FontSize="Medium" />
+        <Editor Text="{Binding MSG_EN}" FontSize="Small"/>
+        <Label Text="Русский:" FontSize="Medium" />
+        <Editor Text="{Binding MSG_RU}" FontSize="Small"/>
     </StackLayout>
     
 </ContentPage>

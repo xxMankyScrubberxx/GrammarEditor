@@ -6,37 +6,64 @@ using Xamarin.Forms;
 
 namespace GrammarEditor.ViewModels
 {
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
+    [QueryProperty(nameof(MSG_ID), nameof(MSG_ID))]
     public class ItemDetailViewModel : BaseViewModel
     {
-        private string itemId;
-        private string text;
-        private string description;
+        private string msg_id;
+        private string msg_en;
+        private string msg_ru;
         public string Id { get; set; }
 
-        public string Text
-        {
-            get => text;
-            set => SetProperty(ref text, value);
-        }
-
-        public string Description
-        {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
-
-        public string ItemId
+        public string MSG_EN
         {
             get
             {
-                return itemId;
+
+                return msg_en;
+            }
+            set => SetProperty(ref msg_en, value);
+        }
+
+        public string MSG_RU
+        {
+            get => msg_ru;
+            set => SetProperty(ref msg_ru, value);
+        }
+
+        public string MSG_ID
+        {
+            get
+            {
+                return msg_id;
             }
             set
             {
-                itemId = value;
+                msg_id = value;
                 LoadItemId(value);
             }
+        }
+
+        private FormattedString FormatGrammar(string GrammarText)
+        {
+            var formattedString = new FormattedString();
+
+            //for (int j = 0; j < strList.Length; j++)
+            //{
+
+            //    if (i == j)
+            //    {
+            //        formattedString.Spans.Add(new Span { Text = strList[j], ForegroundColor = Color.Black, BackgroundColor = Color.Gray });
+            //    }
+
+            //    else
+            //    {
+            //        formattedString.Spans.Add(new Span { Text = strList[j], ForegroundColor = Color.Black, });
+            //    }
+
+
+            //}
+
+            return formattedString;
         }
 
         public async void LoadItemId(string itemId)
@@ -44,9 +71,9 @@ namespace GrammarEditor.ViewModels
             try
             {
                 var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.MSG_EN;
-                Description = item.MSG_RU;
+                Id = item.MSG_ID;
+                MSG_EN = item.MSG_EN;
+                MSG_RU = item.MSG_RU;
             }
             catch (Exception)
             {
