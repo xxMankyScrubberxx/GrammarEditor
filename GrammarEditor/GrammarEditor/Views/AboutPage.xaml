@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GrammarEditor.Views.AboutPage"
              xmlns:vm="clr-namespace:GrammarEditor.ViewModels"
-             Title="{Binding Title}">
+             Title="{Binding Title}"  BackgroundColor="Black">
     
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
@@ -29,8 +29,8 @@
         </StackLayout>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="To test grammar" FontSize="16" Padding="0,0,0,0"/>
-                <Label FontSize="16" Padding="0,24,0,0">
+                <Label Text="To test grammar" FontSize="16"  TextColor="White" Padding="0,0,0,0"/>
+                <Label FontSize="16" Padding="0,24,0,0" TextColor="White">
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>

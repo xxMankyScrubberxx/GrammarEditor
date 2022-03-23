@@ -9,8 +9,8 @@ namespace GrammarEditor.ViewModels
 {
     public class NewItemViewModel : BaseViewModel
     {
-        private string text;
-        private string description;
+        private string msg_cat;
+        private string msg;
 
         public NewItemViewModel()
         {
@@ -22,20 +22,20 @@ namespace GrammarEditor.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            return !String.IsNullOrWhiteSpace(msg_cat)
+                && !String.IsNullOrWhiteSpace(msg);
         }
 
-        public string Text
+        public string MSG_CAT
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => msg_cat;
+            set => SetProperty(ref msg_cat, value);
         }
 
-        public string Description
+        public string MSG
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => msg;
+            set => SetProperty(ref msg, value);
         }
 
         public Command SaveCommand { get; }
@@ -52,9 +52,18 @@ namespace GrammarEditor.ViewModels
             GrammarItem newItem = new GrammarItem()
             {
                 MSG_ID = Guid.NewGuid().ToString(),
-                MSG_EN = Text,
-                MSG_RU = Description
-            };
+                MSG_CAT = MSG_CAT,
+                MSG = MSG,
+
+                //defaults
+                MSG_EN = String.Empty,
+                MSG_RU = String.Empty,
+                NOTES = String.Empty,
+                CATEGORIES = String.Empty,
+                RU_STATUS = "RED",
+                EN_STATUS = "RED",
+                BIBLIOGRAPHY = String.Empty
+        };
 
             await DataStore.AddItemAsync(newItem);
 

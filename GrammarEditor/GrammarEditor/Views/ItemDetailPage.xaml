@@ -2,34 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GrammarEditor.Views.ItemDetailPage"
-             Title="{Binding Title}">
+             Title="{Binding Title}" BackgroundColor="Black">
 
     <ScrollView>
         <StackLayout Spacing="20" Padding="15">
             <Grid Margin="15,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="60" />
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <Label Text="Category" FontSize="Medium" Grid.Column="2" />
-                <Entry Text="{Binding MSG_CAT}" FontSize="Small" Grid.Column="3"/>
-                <Label Text="ID" FontSize="Medium" Grid.Column="0" />
-                <Label Text="{Binding MSG_ID}" FontSize="Medium" Grid.Column="1" />
+                <Label Text="Category" TextColor="White" FontSize="Medium" Grid.Column="0" />
+                <Entry Text="{Binding MSG_CAT}" FontSize="Small" Grid.Column="1" />
+                <Label Text="ID" FontSize="Medium" TextColor="White" Grid.Column="2" HorizontalTextAlignment="End" />
+                <Label Text="{Binding MSG_ID}" FontSize="Medium" Padding="10,0,0,0" TextColor="White" Grid.Column="3" LineBreakMode="TailTruncation" />
             </Grid>
-            
-            <Label Text="Message:" FontSize="Medium" />
+
+            <Label Text="Message:" FontSize="Medium" TextColor="White" />
             <Editor Text="{Binding MSG}" FontSize="Small"/>
-            <Label Text="English:" FontSize="Medium" />
+            <Label Text="English:" FontSize="Medium" TextColor="White" />
             <Editor Text="{Binding MSG_EN}" FontSize="Small" BackgroundColor="{Binding EN_STATUS}"/>
-            <Label Text="Русский:" FontSize="Medium" />
+            <Label Text="Русский:" FontSize="Medium" TextColor="White" />
             <Editor Text="{Binding MSG_RU}" FontSize="Small" BackgroundColor="{Binding RU_STATUS}"/>
 
-            <Label Text="Notes" FontSize="Medium" />
+            <Label Text="Notes" FontSize="Medium" TextColor="White" />
             <Entry Text="{Binding NOTES}" FontSize="Small"/>
 
             <Button Margin="0,10,0,0" Text="Save Data"
