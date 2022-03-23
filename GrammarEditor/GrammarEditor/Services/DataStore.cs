@@ -30,8 +30,9 @@ namespace GrammarEditor.Services
                 items.Add(
                     new GrammarItem 
                     { 
-                        MSG_ID = item["MSG_ID"].ToString(), 
-                        MSG_EN = item["EN"].ToString(), 
+                        MSG_ID = item["MSG_ID"].ToString(),
+                        MSG = item["MSG"].ToString(),
+                        MSG_EN = item["EN"].ToString(),
                         MSG_RU = item["RU"].ToString(), 
                         MSG_CAT = item["CATEGORY"].ToString(),
                         BIBLIOGRAPHY = item["BIBLIOGRAPHY"].ToString(),
