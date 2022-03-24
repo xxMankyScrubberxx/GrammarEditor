@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -43,13 +44,13 @@ namespace GrammarEditor.ViewModels
         }
 
 
-        public string MSG { get=> msg; set => SetProperty(ref msg, value); }
-        public string MSG_CAT { get => msg_cat; set => SetProperty(ref msg_cat, value); }
+        public string MSG { get=> msg; set => SetProperty(ref msg, CleanString(value)); }
+        public string MSG_CAT { get => msg_cat; set => SetProperty(ref msg_cat, CleanString(value)); }
         public string RU_STATUS { get => ru_status; set => SetProperty(ref ru_status, value); }
         public string EN_STATUS { get => en_status; set => SetProperty(ref en_status, value); }
-        public string NOTES { get => notes; set => SetProperty(ref notes, value); }
-        public string BIBLIOGRAPHY { get => bibliography; set => SetProperty(ref bibliography, value); }
-        public string CATEGORIES { get => categories; set => SetProperty(ref categories, value); }
+        public string NOTES { get => notes; set => SetProperty(ref notes, CleanString(value)); }
+        public string BIBLIOGRAPHY { get => bibliography; set => SetProperty(ref bibliography, CleanString(value)); }
+        public string CATEGORIES { get => categories; set => SetProperty(ref categories, CleanString(value)); }
 
         public string MSG_EN
         {
@@ -57,13 +58,13 @@ namespace GrammarEditor.ViewModels
             {
                 return FormatGrammar(msg_en);
             }
-            set => SetProperty(ref msg_en, value.Replace("<b>", "").Replace("</b>", ""));
+            set => SetProperty(ref msg_en, CleanString(value));
         }
 
         public string MSG_RU
         {
             get => FormatGrammar(msg_ru);
-            set => SetProperty(ref msg_ru, value.Replace("<b>", "").Replace("</b>", ""));
+            set => SetProperty(ref msg_ru, CleanString(value));
         }
 
         public string MSG_ID
@@ -82,7 +83,7 @@ namespace GrammarEditor.ViewModels
         private string FormatGrammar(string GrammarText)
         {
             //TODO: created a custom renderer for the Editor control to be able to apply text formatting
-            string sFormatted = GrammarText;//.Replace("[", "<b>[").Replace("]", "]</b>");
+            string sFormatted = GrammarText;;
 
             return sFormatted;
         }
@@ -107,6 +108,40 @@ namespace GrammarEditor.ViewModels
             {
                 Debug.WriteLine("Failed to Load Item");
             }
+        }
+
+        public string CleanString(string TextString)
+        {
+            //TextString = TextString.Replace("[", "<b>[").Replace("]", "]</b>")
+            TextString = TextString.Trim();
+            TextString = Regex.Replace(TextString, @"\s+", " ");
+            SynonymGrammarCount(TextString);
+            return TextString;
+        }
+
+        public int SynonymGrammarCount(string TextString)
+        {
+            int count = 0;
+            int iSectionCount = 0;
+            int iSectionGrammarCount = 0;
+            int iGrammarCnt = 0;
+            int iGrammarCntTotal = 0;
+
+            var reg = new Regex("[.*?]");
+            var matches = reg.Matches(TextString);
+            foreach (var item in matches)
+            {
+                iSectionCount++;
+                string[] inside = item.ToString().Split(',');
+                foreach (var s in inside)
+                {
+                    iSectionGrammarCount++; count++;
+                }
+                iGrammarCnt = iSectionCount * iSectionGrammarCount;
+                iGrammarCntTotal += iGrammarCnt;
+            }
+
+            return iGrammarCntTotal;
         }
     }
 }

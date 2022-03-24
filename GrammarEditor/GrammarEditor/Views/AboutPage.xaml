@@ -29,8 +29,8 @@
         </StackLayout>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
-                <Label Text="To test grammar" FontSize="16"  TextColor="White" Padding="0,0,0,0"/>
-                <Label FontSize="16" Padding="0,24,0,0" TextColor="White">
+                <Label Text="To test grammar" FontSize="Large"  TextColor="White" Padding="0,0,0,0"/>
+                <Label FontSize="Large" Padding="0,24,0,0" TextColor="White">
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
