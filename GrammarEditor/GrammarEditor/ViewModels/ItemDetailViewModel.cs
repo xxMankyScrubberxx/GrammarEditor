@@ -52,19 +52,61 @@ namespace GrammarEditor.ViewModels
         public string BIBLIOGRAPHY { get => bibliography; set => SetProperty(ref bibliography, CleanString(value)); }
         public string CATEGORIES { get => categories; set => SetProperty(ref categories, CleanString(value)); }
 
+
+        private string msg_en_label = "English:";
+        public string MSG_EN_Label
+        {
+            get
+            {
+                int cnt = SynonymGrammarCount(msg_en);
+                string ret = String.Format("English: ({0})", cnt.ToString());
+                return ret;
+            }
+            set {
+                int cnt = SynonymGrammarCount(msg_en);
+                string ret = String.Format("English: ({0})", cnt.ToString()); 
+                SetProperty(ref msg_en_label, CleanString(ret)); }
+        }
         public string MSG_EN
         {
             get
             {
                 return FormatGrammar(msg_en);
             }
-            set => SetProperty(ref msg_en, CleanString(value));
+            set
+            {
+                SetProperty(ref msg_en, CleanString(value));
+                MSG_EN_Label = MSG_EN_Label;
+            }
         }
 
+
+        private string msg_ru_label = "Русский:"; 
+        public string MSG_RU_Label
+        {
+            get
+            {
+                int cnt = SynonymGrammarCount(msg_ru);
+                string ret = String.Format("Русский:: ({0})", cnt.ToString());
+                return ret;
+            }
+            set
+            {
+                int cnt = SynonymGrammarCount(msg_ru);
+                string ret = String.Format("Русский:: ({0})", cnt.ToString());
+                SetProperty(ref msg_ru_label, CleanString(ret));
+                OnPropertyChanged(MSG_RU_Label);
+                OnPropertyChanged(msg_ru_label);
+            }
+        }
         public string MSG_RU
         {
             get => FormatGrammar(msg_ru);
-            set => SetProperty(ref msg_ru, CleanString(value));
+            set
+            {
+                SetProperty(ref msg_ru, CleanString(value));
+                MSG_RU_Label = MSG_RU_Label;
+            }
         }
 
         public string MSG_ID
@@ -103,6 +145,8 @@ namespace GrammarEditor.ViewModels
                 RU_STATUS = item.RU_STATUS;
                 EN_STATUS = item.EN_STATUS;
                 BIBLIOGRAPHY = item.BIBLIOGRAPHY;
+                MSG_RU_Label = MSG_RU_Label;
+                MSG_EN_Label = MSG_EN_Label;
             }
             catch (Exception)
             {
@@ -127,7 +171,7 @@ namespace GrammarEditor.ViewModels
             int iGrammarCnt = 0;
             int iGrammarCntTotal = 0;
 
-            var reg = new Regex("[.*?]");
+            var reg = new Regex(@"\[.*?\]");
             var matches = reg.Matches(TextString);
             foreach (var item in matches)
             {

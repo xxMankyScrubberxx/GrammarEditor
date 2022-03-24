@@ -5,8 +5,8 @@
              Title="{Binding Title}" BackgroundColor="Black">
 
     <ScrollView>
-        <StackLayout Spacing="20" Padding="15">
-            <Grid Margin="15,0">
+        <StackLayout Spacing="30" Padding="30">
+            <Grid Margin="0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="*" />
@@ -14,23 +14,23 @@
                     <ColumnDefinition Width="80" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="33" />
                 </Grid.RowDefinitions>
-                <Label Text="Category" TextColor="White" FontSize="Large" Grid.Column="0" />
-                <Entry Text="{Binding MSG_CAT}" FontSize="Large" Grid.Column="1" BackgroundColor="White" />
-                <Label Text="ID" FontSize="Large" TextColor="White" Grid.Column="2" HorizontalTextAlignment="End" />
-                <Label Text="{Binding MSG_ID}" FontSize="Large" Padding="10,0,0,0" TextColor="White" Grid.Column="3" LineBreakMode="TailTruncation" />
+                <Label Text="Category" TextColor="White" FontSize="16" Grid.Column="0" />
+                <Entry Text="{Binding MSG_CAT}" FontSize="16" Grid.Column="1" TextColor="Black" BackgroundColor="LightGray" />
+                <Label Text="ID" FontSize="16" TextColor="White" Grid.Column="2" HorizontalTextAlignment="End" />
+                <Label Text="{Binding MSG_ID}" FontSize="16" Padding="0,0,0,0" TextColor="Black" BackgroundColor="LightGray" Grid.Column="3" LineBreakMode="TailTruncation" />
             </Grid>
 
-            <Label Text="Message:" FontSize="Large" TextColor="White" />
-            <Editor Text="{Binding MSG}" FontSize="Large" BackgroundColor="White"/>
-            <Label Text="English:" FontSize="Large" TextColor="White" />
-            <Editor Text="{Binding MSG_EN}" FontSize="Large" BackgroundColor="{Binding EN_STATUS}"/>
-            <Label Text="Русский:" FontSize="Large" TextColor="White" />
-            <Editor Text="{Binding MSG_RU}" FontSize="Large" BackgroundColor="{Binding RU_STATUS}"/>
+            <Label Text="Message:" FontSize="16" TextColor="White" />
+            <Editor Text="{Binding MSG}" FontSize="16" TextColor="Black" BackgroundColor="LightGray"/>
+            <Label Text="{Binding MSG_EN_Label}" FontSize="16" TextColor="White" />
+            <Editor Text="{Binding MSG_EN}" FontSize="16" BackgroundColor="{Binding EN_STATUS}"/>
+            <Label Text="{Binding MSG_RU_Label}" FontSize="16" TextColor="White" />
+            <Editor Text="{Binding MSG_RU}" FontSize="16" BackgroundColor="{Binding RU_STATUS}"/>
 
-            <Label Text="Notes" FontSize="Large" TextColor="White" />
-            <Entry Text="{Binding NOTES}" FontSize="Large"/>
+            <Label Text="Notes" FontSize="16" TextColor="White" />
+            <Entry Text="{Binding NOTES}" FontSize="16"/>
 
             <Button Margin="0,10,0,0" Text="Save Data"
                         Command="{Binding ExportToJSON}"
