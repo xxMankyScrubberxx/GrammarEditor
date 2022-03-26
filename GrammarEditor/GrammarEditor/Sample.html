@@ -1,0 +1,281 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery.getJSON demo</title>
+    <style>
+        html, body {
+            height: 100%
+        }
+
+        body {
+            font-family: courier,courier new,serif;
+            font-size: 9pt;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px
+        }
+
+        .top-logo {
+            margin: 10px 0
+        }
+
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .located-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 5px
+        }
+
+        .text {
+            padding: 10px;
+            font-size: 12pt
+        }
+
+        .bordered_wrapper {
+            font-size: 10pt;
+            border: 1px solid #000;
+            padding: 5px;
+            margin: 15px 0;
+            font-weight: 700
+        }
+
+        .clear-link {
+            color: #000;
+            background-color: transparent;
+            text-decoration: none
+        }
+
+        .bold {
+            font-weight: 700
+        }
+
+        .button {
+            border: none;
+            color: #fff;
+            background-color: #000;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            padding: 10px;
+            cursor: pointer;
+            font-family: courier,courier new,serif;
+            font-size: 12pt;
+            text-align: center
+        }
+
+        .button-a {
+            display: inline-block
+        }
+
+        img {
+            max-height: 40px;
+            min-height: 40px
+        }
+
+        .logos {
+            padding: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-around
+        }
+
+        .reload-button {
+            max-height: 60px;
+            margin-left: 10px;
+            cursor: pointer
+        }
+
+        .reload-button-mobile {
+            max-height: 60px;
+            cursor: pointer
+        }
+
+        .proclamation {
+            margin: 15px 0
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+</head>
+<body>
+
+    <!--hidden controls to hold onto data, which can be changed
+        from type="hidden" to type="text" to allow you to debug
+        and test out your code in an easy way
+
+        <input type="hidden" id="oGrammar" />
+        to
+        <input type="text" id="oGrammar" />
+    -->
+    <input type="hidden" id="oGrammarSubjects" />
+    <input type="hidden" id="oGrammar" />
+    <input type="hidden" id="oEmail" />
+    <input type="hidden" id="oSMS" />
+
+
+    <!--This is for the body of the page-->
+    <div>
+        Sample Page - In Development.
+        <hr />
+        <pre>
+______       _   _                         _      _        ___                              
+| ___ \     | | | |                       (_)    | |      / _ \                             
+| |_/ /_   _| |_| |_ ___ _ ____      _____ _  ___| |__   / /_\ \ __ _  ___ _ __   ___ _   _ 
+| ___ \ | | | __| __/ _ \ '__\ \ /\ / / _ \ |/ __| '_ \  |  _  |/ _` |/ _ \ '_ \ / __| | | |
+| |_/ / |_| | |_| ||  __/ |   \ V  V /  __/ | (__| | | | | | | | (_| |  __/ | | | (__| |_| |
+\____/ \__,_|\__|\__\___|_|    \_/\_/ \___|_|\___|_| |_| \_| |_/\__, |\___|_| |_|\___|\__, |
+                                                                 __/ |                 __/ |
+                                                                |___/                 |___/ 
+</pre>
+        <hr />
+        <div class="center">
+            <table border="0" style="border-collapse: collapse; width: 575px;">
+                <tbody>
+                    <tr>
+                        <td style="width: 75px;">Subject (RU):</td>
+                        <td style="width: 500px;"><input type="text" id="txtSubjectRU" style="width: 550px;" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 75px;">Subject (EN):</td>
+                        <td style="width: 500px;"><input type="text" id="txtSubjectEN" style="width: 550px;" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 75px;">Message:</td>
+                        <td style="width: 500px;"><textarea id="txtMessageRU" maxlength="2500" style="width: 550px; height: 130px;"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 75px;">English:</td>
+                        <td style="width: 500px;"><textarea id="txtMessageEN" maxlength="2500" style="width: 550px; height: 130px;"></textarea></td>
+                    </tr>
+                    <tr style="display:none;">
+                        <td style="width: 75px;">MSG:</td>
+                        <td style="width: 500px;"><textarea id="txtMessage" maxlength="2500" style="width: 550px; height: 130px;"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 75px;">Signature:</td>
+                        <td style="width: 500px;"><textarea id="txtSignature" maxlength="200" style="width: 550px;">Мы - легион / We are legion</textarea></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 75px;"></td>
+                        <td style="width: 500px;"> Buttons to do stuff will be here
+                            <input type="button" onclick="sendMail();" value="Email" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="proclamation">
+            <div class="bold">We the people of the world have a message to the Russian nation.</div>
+
+            <p>
+                <div style="align-content:center;">
+                    <a href="https://twitter.com/squad3o3"><img src="twitter.svg" alt="Twitter logo"></a>
+                    <a href="https://t.me/squad3o3"><img src="telegram.jpg" alt="Telegram"></a>
+                </div>
+                Big shout out to squad303 for their work and inspiration
+            </p>
+        </div>
+    </div>
+
+
+
+    <!--The script section is where the magic happens-->
+    <script>
+
+        //data objects
+        var oGrammarSubject;
+        var oGrammar;
+        var oEmail;
+        var oSMS;
+
+        //run this when the page is ready
+        $(document).ready(function () {
+            fetchMessage();
+            //fetchNumber();
+            //fetchEmails();
+            fetchSubject();
+        });
+
+        //JSON API URLs
+        var grammarSubjectAPI = "https://wearebadmofos.com/subjectAPI.php"
+        var grammarAPI = "https://wearebadmofos.com/Grammar.php";
+        var emailAPI = "https://wearebadmofos.com/emAPI.php";
+        var smsAPI = "https://wearebadmofos.com/emAPI2.php";
+
+
+        //get JSON data for a "Grammar" message by fetching from the URL
+        function fetchMessage() {
+            fetch(grammarAPI)
+                .then(result => result.json())  //results are JSON
+                .then((output) => {             //results through output
+                    oGrammar = output;          //put the output results of the API query into the object set aside for "Grammar"
+                    $("#oGrammar").val(JSON.stringify(output));        //set the value of the hidden control with the id="oGrammar" to the JSON object's string representation
+                    $("#txtMessageRU").val(oGrammar.grammar[2]);               //set the value of the message text area with the id="txtMessageRU" to the JSON object's MSG_RU property
+                    $("#txtMessageEN").val(oGrammar.grammar[1]);               //set the value of the message text area with the id="txtMessageEN" to the JSON object's MSG_EN property
+                    $("#txtMessage").val(oGrammar.grammar[0]);               //set the value of the message text area with the id="txtMessage" to the JSON object's MSG property
+                }).catch(err => console.error(err));    //if an error happened, write the error to the console for debugging (F12 button/inspect tool in most browsers)
+        }
+
+        //rinse and repeat for the other data pulls
+        //get JSON data for emails by fetching from the URL
+        function fetchEmails() {
+            fetch(emailAPI)
+                .then(result => result.json())  //results are JSON
+                .then((output) => {             //results through output
+                    oEmail = output;          //put the output results of the API query into the object set aside for emails
+                    $("#oEmail").val(JSON.stringify(output));        //set the value of the hidden control with the id="oEmail" to the JSON object's string representation
+                }).catch(err => console.error(err));    //if an error happened, write the error to the console for debugging (F12 button/inspect tool in most browsers)
+        }
+
+        //get JSON data for SMS info by fetching from the URL
+        function fetchNumber() {
+            fetch(smsAPI)
+                .then(result => result.json())  //results are JSON
+                .then((output) => {             //results through output
+                    oEmail = output;          //put the output results of the API query into the object set aside for emails
+                    $("#oSMS").val(JSON.stringify(output));        //set the value of the hidden control with the id="oSMS" to the JSON object's string representation
+                }).catch(err => console.error(err));    //if an error happened, write the error to the console for debugging (F12 button/inspect tool in most browsers)
+        }
+
+        //get JSON data for a "Grammar" subject by fetching from the URL
+        function fetchSubject() {
+            fetch(grammarSubjectAPI)
+                .then(result => result.json())  //results are JSON
+                .then((output) => {             //results through output
+                    oGrammarSubject = output;          //put the output results of the API query into the object set aside for subject
+                    $("#oGrammarSubject").val(JSON.stringify(output));        //set the value of the hidden control with the id="oGrammarSubject" to the JSON object's string representation
+                    $("#txtSubjectRU").val(oGrammarSubject.grammar[1]);               //set the value of the message text area with the id="txtSubjectRU" to the JSON object's MSG_RU property
+                    $("#txtSubjectEN").val(oGrammarSubject.grammar[0]);               //set the value of the message text area with the id="txtSubjectEN" to the JSON object's MSG_RU property
+                }).catch(err => console.error(err));    //if an error happened, write the error to the console for debugging (F12 button/inspect tool in most browsers)
+        }
+
+        async function sendMail() {
+            fetch(emailAPI)
+                .then(result => result.json())  //results are JSON
+                .then((output) => {             //results through output
+                    oEmail = output;          //put the output results of the API query into the object set aside for emails
+                    $("#oEmail").val(JSON.stringify(output));        //set the value of the hidden control with the id="oEmail" to the JSON object's string representation
+                
+                    var bccTo = JSON.stringify(oEmail.emails);// 
+                    var sendTo = oEmail.emails[0];
+                    bccTo = bccTo.replace("[", "").replace("]").replace(sendMail, "");
+                    const sub = $("#txtSubjectRU").val();
+                    const eml = $("#txtMessageRU").val() + "\r\n\r\n" + $("#txtSignature").val();
+                    window.location.href = "mailto:" + encodeURIComponent(sendTo) + "?bcc=" + encodeURIComponent(bccTo) +"&subject=" + encodeURIComponent(sub) + "&body=" + encodeURIComponent(eml);
+                }
+            ).catch(err => console.error('error:' + err));    //if an error happened, write the error to the console for debugging (F12 button/inspect tool in most browsers)
+        }
+
+    </script>
+
+</body>
+</html>

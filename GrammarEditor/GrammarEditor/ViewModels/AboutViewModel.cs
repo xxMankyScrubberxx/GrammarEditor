@@ -22,7 +22,7 @@ namespace GrammarEditor.ViewModels
 
         const string dataGrammarLocal = "GrammarEditor.grammar.json";
         public string DataGrammarLocal { get => dataGrammarLocal; }
-        string dataGrammarLocation = "https://wearebadmofos.com/grammar.txt";
+        string dataGrammarLocation = "https://wearebadmofos.com/butter.php";
         private string grammarDataLocalStore;
 
         public string DataGrammarLocation { get => dataGrammarLocation; }

@@ -125,6 +125,7 @@ namespace GrammarEditor.ViewModels
             int iSectionCount = 0;
             int iSectionGrammarCount = 0;
             int iGrammarCnt = 0;
+
             int iGrammarCntTotal = 0;
 
             var reg = new Regex("[.*?]");
