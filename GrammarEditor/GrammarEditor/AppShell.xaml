@@ -31,7 +31,7 @@
 
     <TabBar>
         <ShellContent Title="Home" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-        <ShellContent Title="Grammar" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:GrammarItemsPage}" />
+        <ShellContent Title="Grammar" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:GrammarItemsPage}"  />
     </TabBar>
 
     <!--

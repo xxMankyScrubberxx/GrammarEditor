@@ -35,29 +35,29 @@
                             <Label Text="{Binding MSG_ID}" Grid.Column="0" Grid.Row="0"
                                                 MaxLines="1" LineBreakMode="TailTruncation"
                                                 Style="{DynamicResource ListItemTextStyle}" 
-                                                FontSize="Large" TextColor="White" />
+                                                FontSize="16" TextColor="White" />
                             <Label Text="{Binding MSG_CAT}" Grid.Column="1" Grid.Row="0"
                                                 LineBreakMode="NoWrap" 
                                                 Style="{DynamicResource ListItemTextStyle}" 
                                                 MaxLines="1"
-                                                FontSize="Large" TextColor="White" />
+                                                FontSize="16" TextColor="White" />
                             <Label Text="{Binding MSG}" Grid.Column="1" Grid.Row="1"
                                                 LineBreakMode="NoWrap" 
                                                 Style="{DynamicResource ListItemTextStyle}" 
                                                 MaxLines="1"
-                                                FontSize="Large" TextColor="White" />
+                                                FontSize="16" TextColor="White" />
                             <Label Text="{Binding MSG_EN}" Grid.Column="1" Grid.Row="2"
                                                 BackgroundColor="{Binding EN_STATUS}"
                                                 LineBreakMode="TailTruncation" 
                                                 Style="{DynamicResource ListItemTextStyle}" 
                                                 MaxLines="1" Margin="0,10,0,0"
-                                                FontSize="Large" TextColor="White" />
+                                                FontSize="16" TextColor="White" />
                             <Label Text="{Binding MSG_RU}" Grid.Column="1" Grid.Row="3"
                                                 LineBreakMode="TailTruncation"
                                                 BackgroundColor="{Binding RU_STATUS}"
                                                 MaxLines="1" Margin="0,10,0,0"
                                                 Style="{DynamicResource ListItemDetailTextStyle}"
-                                                FontSize="Large" TextColor="White" />
+                                                FontSize="16" TextColor="White" />
                         </Grid>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
