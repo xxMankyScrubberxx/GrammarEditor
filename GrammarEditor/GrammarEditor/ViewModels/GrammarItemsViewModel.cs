@@ -4,6 +4,7 @@ using GrammarEditor.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -17,6 +18,9 @@ namespace GrammarEditor.ViewModels
         public Command LoadGrammarItemsCommand { get; }
         public Command AddGrammarItemCommand { get; }
         public Command<GrammarItem> GrammarItemTapped { get; }
+
+        public int RU_COUNT = 0;
+        public int EN_COUNT = 0;
 
         public GrammarItemsViewModel()
         {
@@ -36,13 +40,16 @@ namespace GrammarEditor.ViewModels
 
             try
             {
-
+                RU_COUNT = 0;
+                EN_COUNT = 0;
                 string sData = GrammarSettings.GrammarDataLocalStore;
                 GrammarItems.Clear();
                 var items = await DataStore.GetGrammarItemsAsync(true);
                 foreach (var item in items)
                 {
                     GrammarItems.Add(item);
+                    RU_COUNT += SynonymGrammarCount(item.MSG_RU);
+                    EN_COUNT += SynonymGrammarCount(item.MSG_EN);
                 }
             }
             catch (Exception ex)
@@ -69,6 +76,32 @@ namespace GrammarEditor.ViewModels
                 SetProperty(ref _selectedGrammarItem, value);
                 OnGrammarItemSelected(value);
             }
+        }
+
+        public int SynonymGrammarCount(string TextString)
+        {
+            int count = 0;
+            int iSectionCount = 0;
+            int iSectionGrammarCount = 0;
+            int iGrammarCnt = 0;
+
+            int iGrammarCntTotal = 0;
+
+            var reg = new Regex(@"\[.*?\]");
+            var matches = reg.Matches(TextString);
+            foreach (var item in matches)
+            {
+                iSectionCount++;
+                string[] inside = item.ToString().Split(',');
+                foreach (var s in inside)
+                {
+                    iSectionGrammarCount++; count++;
+                }
+                iGrammarCnt = iSectionCount * iSectionGrammarCount;
+                iGrammarCntTotal += iGrammarCnt;
+            }
+
+            return iGrammarCntTotal;
         }
 
         private async void OnAddGrammarItem(object obj)
