@@ -7,108 +7,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta property="og:image" content="https://wearebadmofos.com/images/Smiley.jpg" />
     <title>Anon Email Blaster</title>
+    
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <style>
-        html, body {
-            height: 100%
-        }
-
+        
         body {
-            font-family: courier,courier new,serif;
-            font-size: 9pt;
             text-align: center;
             max-width: 1100px;
             margin: 0 auto;
-            padding: 10px
+            padding: 10px;
+            display: flex;
+            align-items: center
+        }
+
+        @media(max-width:576px) {
+            body {
+                display: block
+            }
         }
 
         .top-logo {
-            margin: 10px 0
+            display: none
         }
 
-        .center {
-            display: flex;
-            align-items: center;
-            justify-content: center
+        @media(max-width:576px) {
+            .top-logo {
+                display: block;
+                margin: 0 auto;
+                margin-bottom: 20px;
+                max-height: 20px
+            }
         }
 
-        .located-text {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 5px
-        }
-
-        .text {
-            padding: 10px;
-            font-size: 12pt
-        }
-
-        .bordered_wrapper {
-            font-size: 10pt;
-            border: 1px solid #000;
-            padding: 5px;
-            margin: 15px 0;
-            font-weight: 700
-        }
-
-        .clear-link {
-            color: #000;
-            background-color: transparent;
-            text-decoration: none
-        }
-
-        .bold {
-            font-weight: 700
-        }
-
-        .button {
-            border: none;
-            color: #fff;
-            background-color: #000;
-            text-align: center;
-            text-decoration: none;
-            text-transform: uppercase;
-            padding: 10px;
-            cursor: pointer;
-            font-family: courier,courier new,serif;
-            font-size: 12pt;
-            text-align: center
-        }
-
-        .button-a {
-            display: inline-block
+        @media(max-width:576px) {
+            .bottom-logo {
+                display: none
+            }
         }
 
         img {
-            max-height: 40px;
-            min-height: 40px
+            max-height: 40px
         }
 
         .logos {
-            padding: 30px 0;
+            padding: 130px 0;
             display: flex;
             align-items: center;
-            justify-content: space-around
+            justify-content: space-between
         }
 
-        .reload-button {
-            max-height: 60px;
-            margin-left: 10px;
-            cursor: pointer
+        @media(max-width:576px) {
+            .logos {
+                padding: 0;
+                justify-content: center
+            }
         }
-
-        .reload-button-mobile {
-            max-height: 60px;
-            cursor: pointer
-        }
-
-        .proclamation {
-            margin: 15px 0
-        }
+        
     </style>
-    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-
 </head>
 <body>
 
@@ -127,58 +84,70 @@
 
 
     <!--This is for the body of the page-->
-    <div>
-        <hr />
-        Sample Page - In Development.
-        <hr />
-        <div class="center">
-            <table border="0" style="border-collapse: collapse; width: 575px;">
+    <div style="text-align:center;width: 400px;align-content:center;font-size:smaller;margin-top:60px;">        
+        <div>
+            <div style="">
+                <hr />Sample Page - For New Coder Education<hr />
+                <div style="font-weight:bolder;font-size:medium;height:35px;">We the people of the world have a message for the Russian People.</div>
+                <div style="font-size:small;padding:0px 10px 10px 10px;">
+                    <div id="typc" style="height:40px;">
+                        <div id="typtext"></div><div id="typcurs"></div>
+                    </div>       
+                    It is possible for each of us to convey a direct message to the inhabitants of this enslaved country.
+                    Let them know the truth. Let them know the power of the free world!
+                    <br /><br />
+                    Anonymous gives you a tool that allows you to send email messages from your phones directly to randomly selected Russians.
+                </div>
+            </div>
+            <!--This contains the controls used to display/capture input-->
+            <table border="0" style="border-collapse: collapse; width: 400px;">
                 <tbody>
                     <tr>
                         <td style="width: 75px;">Subject (RU):</td>
-                        <td style="width: 500px;"><input type="text" id="txtSubjectRU" style="width: 550px;" /></td>
+                        <td style="width: 300px;"><textarea id="txtSubjectRU" maxlength="2500" style="width: 300px;" ></textarea></td>
+                        <td style="width: 25px;">&nbsp;</td>
                     </tr>
-                    <tr>
-                        <td style="width: 75px;">Subject (EN):</td>
-                        <td style="width: 500px;"><input type="text" id="txtSubjectEN" style="width: 550px;" /></td>
-                    </tr>
-                    <tr>
+                   <tr>
                         <td style="width: 75px;">Message:</td>
-                        <td style="width: 500px;"><textarea id="txtMessageRU" maxlength="2500" style="width: 550px; height: 130px;"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td style="width: 75px;">English:</td>
-                        <td style="width: 500px;"><textarea id="txtMessageEN" maxlength="2500" style="width: 550px; height: 130px;"></textarea></td>
-                    </tr>
-                    <tr style="display:none;">
-                        <td style="width: 75px;">MSG:</td>
-                        <td style="width: 500px;"><textarea id="txtMessage" maxlength="2500" style="width: 550px; height: 130px;"></textarea></td>
+                        <td style="width: 300px;"><textarea id="txtMessageRU" maxlength="2500" style="width: 300px;height:250px;" ></textarea></td>
+                        <td style="width: 25px;"></td>
                     </tr>
                     <tr>
                         <td style="width: 75px;">Signature:</td>
-                        <td style="width: 500px;"><textarea id="txtSignature" maxlength="200" style="width: 550px;">Мы - легион / We are legion</textarea></td>
+                        <td style="width: 300px;"><input type="text" id="txtSignature" maxlength="200" style="width: 300px;" value="Мы - легион / We are legion"></td>
+                        <td style="width: 25px;"></td>
                     </tr>
                     <tr>
                         <td style="width: 75px;"></td>
-                        <td style="width: 500px;">
-                            Buttons to do stuff will be here<br />
-                            <button onclick="sendMail();" value="Email" style="width:500px;height:60px;">Send Email</button>
+                        <td style="width: 300px;">
+                            <button onclick="sendMail();" value="Email" style="width:325px;height:40px;font-size:large;">Send Email</button>
                         </td>
+                        <td style="width: 25px;"></td>
+                    </tr>
+                    <tr style="background-color:Menu;">
+                        <td colspan="3">English Translation Equivalent</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 75px;">Subject (EN):</td>
+                        <td style="width: 300px;"><textarea id="txtSubjectEN" maxlength="2500" style="width: 320px;" ></textarea></td>
+                        <td style="width: 25px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 75px;">English:</td>
+                        <td style="width: 300px;"><textarea id="txtMessageEN" maxlength="2500" style="width: 300px;height: 250px;" readonly="readonly"></textarea></td>
+                        <td style="width: 25px;"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div class="proclamation">
-            <div class="bold">We the people of the world have a message to the Russian nation.</div>
-
-            <p>
-                <div style="align-content:center;">
-                    <a href="https://twitter.com/squad3o3"><img src="twitter.svg" alt="Twitter logo"></a>
-                    <a href="https://t.me/squad3o3"><img src="telegram.jpg" alt="Telegram"></a>
-                </div>
-                Big shout out to squad303 for their work and inspiration
-            </p>
+        <div style="align-content:center;"> 
+            <p>Big shout out to squad303 for their work and inspiration.<br />See what they've been up to on Twitter or Telegram</p>
+            <div>
+                <a href="https://twitter.com/squad3o3"><img src="twitter.svg" alt="Twitter logo"></a>
+                <a href="https://t.me/squad3o3"><img src="telegram.jpg" alt="Telegram" ></a>
+            </div>               
+            
         </div>
     </div>
 
@@ -270,6 +239,94 @@
                 }
             ).catch(err => console.error('error:' + err));    //if an error happened, write the error to the console for debugging (F12 button/inspect tool in most browsers)
         }
+
+
+        /************Fancy Text stuff - Credits: https://usefulangle.com/post/75/typing-effect-animation-javascript-css***************/
+        var _CONTENT = [ 
+	        "The Russian people are paying the price because of the shameful decision of a dictator to attack an independent Ukraine.", 
+	        "The joint actions of all the states of the free world, as a response to Russia’s aggression, will lead to the collapse of the entire country.", 
+	        "However, millions of Russian citizens do not know the truth about the causes or course of the war in Ukraine.", 
+            "There is no free media in Russia, the internet is censored and they can be jailed for even calling it a war.",
+            "They cannot ask questions and many families do not know if their loved ones are alive or dead."
+        ];
+
+        var _PART = 0;
+        var _PART_INDEX = 0;
+        var _INTERVAL_VAL;
+        var _ELEMENT = document.getElementById("typtext");
+        var _CURSOR = document.getElementById("typcurs");
+
+        function Type() { 
+	        var text =  _CONTENT[_PART].substring(0, _PART_INDEX + 1);
+	        _ELEMENT.innerHTML = text;
+	        _PART_INDEX++;
+	        if(text === _CONTENT[_PART]) {
+		        _CURSOR.style.display = 'none';
+
+		        clearInterval(_INTERVAL_VAL);
+		        setTimeout(function() {
+			        _INTERVAL_VAL = setInterval(Delete, 50);
+		        }, 1000);
+	        }
+        }
+
+        function Delete() {
+	        var text =  _CONTENT[_PART].substring(0, _PART_INDEX - 1);
+	        _ELEMENT.innerHTML = text;
+	        _PART_INDEX--;
+	        if(text === '') {
+		        clearInterval(_INTERVAL_VAL);
+		        if(_PART == (_CONTENT.length - 1))
+			        _PART = 0;
+		        else
+			        _PART++;
+		
+		        _PART_INDEX = 0;
+		        setTimeout(function() {
+			        _CURSOR.style.display = 'inline-block';
+			        _INTERVAL_VAL = setInterval(Type, 80);
+		        }, 1000);
+	        }
+        }
+        _INTERVAL_VAL = setInterval(Type, 80);
+
+
+        //          Code for updating the counter
+
+        function randomIntFromInterval(min, max) { // min and max included 
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+
+        var curr = null;
+        var upspeed = null;
+
+        var ups = new XMLHttpRequest();
+        ups.open('GET', 'upspeed-min.txt');
+        ups.onreadystatechange = function() {
+            upspeed = ups.responseText;
+        }
+        ups.onerror = function() {
+            upspeed = 1000;
+        }
+        ups.send();
+
+        var capi = new XMLHttpRequest();
+        capi.open('GET', 'https://api.countapi.xyz/get/bwi/mailsentv1');
+        capi.onreadystatechange = function() {
+            curr = JSON.parse(capi.responseText)["value"] * 1000 - randomIntFromInterval(0,1000);
+        }
+        capi.send();
+
+        function cuipd(){
+            // do whatever you like here
+            if(upspeed != null && curr != null) {
+                curr += randomIntFromInterval((upspeed / 600)*0.5, (upspeed / 600)*1.5);
+                document.getElementById("ctext").innerHTML = curr.toString();
+            }
+            console.log(curr);
+            setTimeout(cuipd, 100);
+        }
+        cuipd();
 
     </script>
 
