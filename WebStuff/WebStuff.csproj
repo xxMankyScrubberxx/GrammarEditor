@@ -6,4 +6,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\SampleEmail.html" />
+    <Content Remove="wwwroot\SampleSMS.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\SampleEmail.html" />
+    <None Include="wwwroot\SampleSMS.html" />
+  </ItemGroup>
+
 </Project>
